@@ -1,5 +1,7 @@
 #include <Arduino.h>
 
+///////////////////////////////////////////////////////////////
+
 #pragma region INCLUDES SECTION
 
   #include <Adafruit_Sensor.h>
@@ -9,19 +11,23 @@
 
 #pragma endregion
 
+///////////////////////////////////////////////////////////////
+
 #pragma region DEFINE SECTION
 
   #define TASK_DELAY 2000
 
   #define DHT_PIN 25
   #define DHT_TYPE DHT11
-  
+
   #define I2C_SDA 21
   #define I2C_SCL 22
 
   #define QUEUE_LEN 5
 
 #pragma endregion
+
+///////////////////////////////////////////////////////////////
 
 #pragma region DECLARE SECTION FOR GLOBAL VARIABLE
 
@@ -35,6 +41,8 @@
   QueueHandle_t q_humd;
 
 #pragma endregion
+
+///////////////////////////////////////////////////////////////
 
 #pragma region FUNCTION PROTOTYPE SECTION
   
@@ -50,17 +58,19 @@
 
 #pragma endregion
 
+///////////////////////////////////////////////////////////////
+
 #pragma region SETUP SECTION
 
   void setup() {
+    
     Serial.begin(115200);
-    // put your setup code here, to run once:
     dht.begin();
 
     printSensorInfo();
 
-    q_temp = xQueueCreate(QUEUE_LEN, sizeof(float));
-    q_humd = xQueueCreate(QUEUE_LEN, sizeof(float));
+    q_temp = xQueueCreate(QUEUE_LEN, sizeof(float)); // initialize the Temperature's queue
+    q_humd = xQueueCreate(QUEUE_LEN, sizeof(float)); // initialize the Humidity's queue
 
     xTaskCreatePinnedToCore(setTempAndHumid, "setTempAndHumid", 2024, NULL, 2, NULL, 0);
     // xTaskCreatePinnedToCore(printTemp2Console, "printTemp2Console", 2024, NULL, 1, NULL,0);
@@ -77,6 +87,8 @@
 void loop() {
   // put your main code here, to run repeatedly:
 }
+
+///////////////////////////////////////////////////////////////
 
 #pragma region FUNCTION IMPLEMENTATION SECTION
 
