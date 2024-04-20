@@ -1,0 +1,19 @@
+Project's Author:
+    Nguyen Tuan Vinh - nguyentuanvinh1222@gmail.com
+    Updated on 24/04/2024
+
+Electronic components:
+    - BOARD: ESP32 WROOM 32
+    - SENSOR: DHT11
+    - MONITOR: I2C Serial Interface 1602 LCD Module 
+
+Tools:
+    - Visual Studio Code
+    - PlatformIO
+
+Framwork:
+    - Arduino
+
+Libarys:
+    - DHT sensor libery by Adafruit - ver1.4.6
+    - LiquidCrystal_I2C_ESP32 by Jacob Bechmann Pedersen ver1.1.6 
